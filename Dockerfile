@@ -15,9 +15,9 @@ ENV STARTUP='export PATH="./jre64/bin:$PATH" ; export LD_LIBRARY_PATH="./linux64
 VOLUME /home/container
 
 COPY entrypoint.sh /entrypoint.sh
-COPY healthcheck.py /healthcheck.sh
+COPY healthcheck.sh /healthcheck.sh
 
-RUN chmod +x /entrypoint.sh
+RUN chmod +x /entrypoint.sh /healthcheck.py
 
 ENTRYPOINT ["/entrypoint.sh"]
 
