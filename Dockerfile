@@ -17,7 +17,7 @@ VOLUME /home/container
 COPY entrypoint.sh /entrypoint.sh
 COPY healthcheck.sh /healthcheck.sh
 
-RUN chmod +x /entrypoint.sh /healthcheck.py
+RUN chmod +x /entrypoint.sh /healthcheck.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
 
