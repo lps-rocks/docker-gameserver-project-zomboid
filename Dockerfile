@@ -14,10 +14,14 @@ ENV STARTUP='export PATH="./jre64/bin:$PATH" ; export LD_LIBRARY_PATH="./linux64
 
 VOLUME /home/container
 
+USER root
+
 COPY entrypoint.sh /entrypoint.sh
 COPY healthcheck.sh /healthcheck.sh
 
 RUN chmod +x /entrypoint.sh /healthcheck.sh
+
+USER container
 
 ENTRYPOINT ["/entrypoint.sh"]
 
