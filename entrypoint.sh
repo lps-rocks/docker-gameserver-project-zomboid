@@ -53,5 +53,14 @@ fi
 MODIFIED_STARTUP=$(echo ${STARTUP} | sed -e 's/{{/${/g' -e 's/}}/}/g')
 echo -e ":/home/container$ ${MODIFIED_STARTUP}"
 
+# Properly trap signals
+function stopserver {
+  echo "stopping server"
+  rcon -t rcon -a 127.0.0.1:${RCON_PORT} -p ${RCON_PASSWORD} save
+  rcon -t rcon -a 127.0.0.1:${RCON_PORT} -p ${RCON_PASSWORD} quit
+  wait $(pgrep ProjectZomboid)
+}
+trap stopserver EXIT INT TERM
+
 # Run the Server
-eval ${MODIFIED_STARTUP}
+eval ${MODIFIED_STARTUP} & wait
